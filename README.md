@@ -1,6 +1,7 @@
 # mycode (Project Title)
 
 Because the lab im doing is requiring it.
+Want to learn how to version control projects with git
 
 ## Getting Started
 
