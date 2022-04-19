@@ -18,6 +18,7 @@ print(pokedex.get(choice, b))
         # if the pokemon you chose was not in the available pokemon
 if choice not in pokedex:
        print("Please make a different selection")
+
 else:
     print("Great choice!", (pokedex.get(choice)), "is a favorite type of mine! Choose another Pokemon!")
 
