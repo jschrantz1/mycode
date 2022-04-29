@@ -1,15 +1,21 @@
 #!/usr/bin/python3
 
+import os
+
 # This is a Map of my house
+os.system('clear')
 
 def showInstructions():
   #print a main menu and the commands
-  print('''
+    print('''
 WELCOME TO MY HOUSE
 ========
 Commands:
   go [direction]
 ''')
+    print('You are standing on the front porch facing The Schrantz Residence.')
+    print('The porch goes across the front of the house.')
+    print('If you turn east you are facing the garage if you turn west you will be facing the Cuyahoga Valley National Park')  
 
 def showStatus():
   #print the player's current status
@@ -24,104 +30,235 @@ rooms = {
 
             'Front Porch' : {
                   'north' : 'Front Entryway',
-                  'east' : 'Porch: Facing Garage',
-                  'south' : 'Front Porch',
-                  'west' : 'Porch: Facing National Park',
+                  'east' : 'Garage',
+                  'south' : 'Front Yard',
+                  'west' : 'Left Side of House',
                 },
 
             'Front Entryway' : {
                   'north' : 'Hall',
-                  'east' : 'Entryway: facing Office',
+                  'east' : 'Office',
                   'south' : 'Front Porch',
-                  'west' : 'Entryway: facing Livingroom'
+                  'west' : 'Living Room',
+                  'upstairs' : 'Top of Stairs'
                 },
 
             'Hall' : {
-                  'north' : 'Bar area',
+                  'north' : 'Bar Area',
                   'east' : 'Half Bathroom',
                   'south' : 'Front Entryway',
-                  'West' : 'Pantry'
+                  'west' : 'Just a Wall'
                },
-            'Garage' : {
-                  'north' : 'Dining Room',
-                  'west' : 'Kitchen',
-                  'item' : 'pile of dead babies',
-                  'item' : 'red ferrari'
+
+            'Office' : {
+                  'north' : 'Kitchen',
+                  'east' : 'Just a Wall',
+                  'south' : 'Just a Window',
+                  'west' : 'Front Entryway'
                },
-            'Pantry' : {
-                  'south' : 'Dining Room',
-                  'item' : 'cookie'
-              },
-            'Basement' : {
+
+            'Bar Area' : {
+                  'north' : 'Back Deck',
+                  'east' : 'Kitchen',
                   'south' : 'Hall',
-                  'item' : 'whip and chains.',
-                  'east' : 'B1',
-                  'west' : 'B1',
-                  'north' : 'B1'
+                  'west' : 'Dining Room',
+                  'downstairs' : 'Bottom of Basement Steps'
+              },
+
+            'Living Room' : {
+                  'north' : 'Dining Room',
+                  'east' : 'Front Entryway',
+                  'south' : 'Just a Window',
+                  'west' : 'Just a Wall'
                    },
-            'Upstairs Hall' : {
-                  'south' : 'Playroom',
-                  'north' : 'Bedroom',
-                  'west' : 'Bathroom',
-                  'east' : 'Hall',
-                  'item' : 'whip and chains.'
+
+            'Dining Room' : {
+                  'north' : 'Screened-in Back Porch',
+                  'east' : 'Just a Window',
+                  'south' : 'Living Room',
+                  'west' : 'Bar Area'
                   },
-            'Bedroom' : {
-                  'east' : 'Attic',
-                  'south' : 'Upstairs Hall',
-                  'west' : 'Bathroom'
+
+            'Kitchen' : {
+                  'north' : 'Just a Window',
+                  'east' : 'Mud Room',
+                  'south' : 'Office',
+                  'west' : 'Bar Area'
                   },
-            'Bathroom' : {
-                  'east' : 'Upstairs Hall',
-                  'west' : 'Bedroom',
-                  'south' : 'Closet',
-                  'item' : 'BIG BLACK DILDO =======D---'
+
+            'Half Bathroom' : {
+                  'north' : 'Just a Toilet',
+                  'east' : 'Just a Wall',
+                  'south' : 'Just a Sink',
+                  'west' : 'Hall'
                   },
-            'Closet' : {
-                  'north' : 'Bathroom',
-                  'item' : 'cucumber',
-                  'item' : 'tube of vaseline'
+
+            'Mud Room' : {
+                  'north' : 'Back Deck',
+                  'east' : 'Laundry Room',
+                  'south' : 'Garage',
+                  'west' : 'Kitchen'
                   },
-            'Playroom' : {
-                    'north' : 'Upstairs Hall',
-                    'east' : 'Attic',
-                    'item' : 'glitter',
-                    'item' : 'bodyoil',
-                    'item' : 'LIVE: hamster',
-                    'item' : 'plastic tube'
+
+            'Laundry Room' : {
+                    'north' : 'Just a Window',
+                    'east' : 'Just a Wall',
+                    'south' : 'Just a Wall',
+                    'west' : 'Mud Room'
                     },
-            'Attic' : {
+
+            'Back Deck' : {
+                    'north' : 'Just a Ravine',
+                    'east' : 'Just a Ravine',
+                    'southwest' : 'Bar Area',
+                    'southeast' : 'Mud Room',
+                    'west' : 'Screened-in Back Porch'
+                    },
+
+            'Screened-in Back Porch' : {
+                    'north' : 'Ravine',
+                    'east' : 'Back Deck',
+                    'south' : 'Dining Room',
+                    'west' : 'Back Yard'
+                    },
+
+            'Back Yard' : {
+                    'north' : 'Ravine',
+                    'east' : 'Screened-in Back Porch',
+                    'south' : 'Left Side of House',
+                    'west' : 'Just the Neighbors House'
+                    },
+
+            'Left Side of House' : {
+                    'north' : 'Back Yard',
+                    'east' : 'Just the outside of House',
+                    'south' : 'Front Yard',
+                    'west' : 'Just the Neighbors House'
+                    },
+
+            'Front Yard' : {
+                    'northwest' : 'Left Side of House',
+                    'north' : 'Front Porch',
+                    'east' : 'Driveway',
+                    'south' : 'Just the Street',
+                    'west' : 'Just the Neighbors House'
+                    },
+
+            'Driveway' : {
+                    'north' : 'Garage',
+                    'northeast' : 'Right Side of House',
+                    'east' : 'Just the Neighbors House',
+                    'south' : 'Just the Street',
+                    'west' : 'Front Yard'
+                    },
+
+            'Garage' : {
+                    'north' : 'Mud Room',
+                    'east' : 'Just a Wall',
+                    'south' : 'Driveway',
+                    'west' : 'Just a Wall'
+                    },
+
+            'Right Side of House' : {
+                    'north' : 'Back of House',
+                    'east' : 'Just the Neighbors House',
+                    'south' : 'Driveway',
+                    'west' : 'Just the outside wall of the house'
+                    },
+
+            'Back of House' : {
+                    'north' : 'Just the Ravine',
+                    'east' : 'Just the Neighbors House',
+                    'south' : 'Right Side of House',
+                    'west' : 'Back Deck'
+                    },
+
+            'Bottom of Basement Steps' : {
+                    'upstairs' : 'Bar Area',
+                    'east' : 'Finished Basement Area',
+                    'south' : 'Just a Wall',
+                    'west' : 'Unfinished Basement Area'
+                    },
+
+            'Finished Basement Area' : {
+                    'north' : 'Just a Wall',
+                    'east' : 'Just a Wall',
+                    'south' : 'Just a Wall',
+                    'southwest' : 'Bottom of Basement Steps',
+                    'northwest' : 'Unfinished Basement Area',
+                    'west' : 'Wall'
+                    },
+
+            'Unfinished Basement Area' : {
+                    'north' : 'Just a Wall',
+                    'northeast' : 'Finished Basement Area',
+                    'east' : 'Just a Wall',
+                    'south' : 'Just a Wall',
+                    'southeast' : 'Bottom of Basement Steps',
+                    'west' : 'Just a Wall'
+                    },
+
+            'Top of Stairs' : {
+                    'north' : 'Guest Bathroom',
+                    'east' : 'Master Bedroom',
+                    'south' : 'Front Entry Way',
                     'west' : 'Upstairs Hall',
-                    'item' : 'dead thai lady boy'
+                    'downstairs' : 'Front Entry Way'
                     },
-            'B1' : {
-                    'west' : 'Basement',
-                    'east' : 'B3',
-                    'north' : 'B2',
-                    'south' : 'B2'
+
+            'Guest Bathroom' : {
+                    'north' : 'Just a Toilet',
+                    'east' : 'Just a Sink',
+                    'south' : 'Top of Stairs',
+                    'west' : 'Just a Shower'
                     },
-            'B2' : {
-                    'west' : 'B4',
-                    'east' : 'B4',
-                    'north' : 'B1',
-                    'south' : 'B1'
+
+            'Master Bedroom' : {
+                    'north' : 'Master Bathroom',
+                    'east' : 'Just a Closet',
+                    'south' : 'Just a Closet',
+                    'west' : 'Top of Stairs'
                     },
-            'B3' : {
-                    'west' : 'B1',
-                    'east' : 'B3',
-                    'north' : 'B3',
-                    'south' : 'B4'
+            'Upstairs Hall' : {
+                    'north' : 'Just A Wall',
+                    'northwest' : 'Bedroom 1',
+                    'east' : 'Top of Stairs',
+                    'south' : 'Bedroom 3',
+                    'southwest' : 'Bedroom 2',
+                    'west' : 'Just a Wall'
                     },
-            'B4' : {
-                    'west' : 'B2',
-                    'east' : 'B2',
-                    'north' : 'B3',
-                    'south' : 'B3'
+            'Bedroom 1 ' : {
+                    'north' : 'Just a Closet',
+                    'east' : 'Upstairs Hall',
+                    'south' : 'Just a Wall',
+                    'west' : 'Just a Window'
+                    },
+            'Bedroom 2' : {
+                    'north' : 'Just a Closet',
+                    'east' : 'Upstairs Hall',
+                    'south' : 'Just a Window',
+                    'west' : 'Just a Wall'
+                    },
+            'Bedroom 3' : {
+                    'north' : 'Upstairs Hall',
+                    'east' : 'Just a Wall',
+                    'south' : 'Just a Window',
+                    'west' : 'Just a Closet'
+                    },
+            'Master Bathroom' : {
+                    'north' : 'Just a Shower',
+                    'east' : 'Just a Toilet',
+                    'south' : 'Master Bedroom',
+                    'west' : print('Just a Sink')
+                    },
+
+
             }
-         }
 
 #start the player in the Hall
 currentRoom = 'Front Porch'
+
+os.system('clear')
 
 showInstructions()
 
@@ -141,7 +278,7 @@ while True:
   # split allows an items to have a space on them
   # get golden key is returned ["get", "golden key"]          
   move = move.lower().split(" ", 1)
-
+  os.system('clear')
   #if they type 'go' first
   if move[0] == 'go':
     #check that they are allowed wherever they want to go
@@ -152,18 +289,8 @@ while True:
     else:
         print('You can\'t go that way!')
 
-  if currentRoom == 'Front Porch' and input() == 'south':
-    print('Leaving so soon?')
+    if currentRoom == 'Front Porch':
+        print('You are standing on the front porch facing The Schrantz Residence.') 
+        print('The porch goes across the front of the house.')
+        print('If you turn east you are facing the garage if you turn west you will be facing the Cuyahoga Valley National Park')
 
-  if currentRoom == 'Front Porch':
-    print('You are standing on the front porch facing The Schrantz Residence.') 
-    print('The porch goes across the front of the house.')
-    print('If you turn east you are facing the garage if you turn west you will be facing the Cuyahoga Valley National Park')
-
-  if currentRoom == '':
-      print('You are a dirty gender neutral pronoun')
-
-  ## If a player enters a room with a monster
-  elif 'item' in rooms[currentRoom] and 'monster' in rooms[currentRoom]['item']:
-    print('A figure with a rubber phyallic object strapped to its forhead has got you... GAME OVER!')
-    break
